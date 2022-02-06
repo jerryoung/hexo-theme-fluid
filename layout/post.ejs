@@ -6,7 +6,13 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
-    <div class="d-none d-lg-block col-lg-2"></div>
+    <% if(theme.post.toc.enable && page.toc !== false && theme.post.toc.position === 'left' ){ %>
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <%- partial('_partial/toc') %>
+      </div>
+    <% } else {%>    
+      <div class="d-none d-lg-block col-lg-2"></div>      
+    <% }%>
     <div class="col-lg-8 nopadding-x-md">
       <div class="container nopadding-x-md" id="board-ctn">
         <div class="py-5" id="board">
@@ -53,7 +59,7 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
                     <%- theme.post.copyright.content %>
                   <% } %>
                 </p>
-              <% } %>
+              <% } %>   
               <% if(theme.post.prev_next.enable && !page.hide) { %>
                 <div class="post-prevnext">
                   <article class="post-prev col-6">
@@ -95,11 +101,13 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
         </div>
       </div>
     </div>
-    <% if(theme.post.toc.enable && page.toc !== false){ %>
+    <% if(theme.post.toc.enable && page.toc !== false && theme.post.toc.position !== 'left' ){ %>
       <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
         <%- partial('_partial/toc') %>
       </div>
-    <% } %>
+    <% } else {%>    
+      <div class="d-none d-lg-block col-lg-2"></div>      
+    <% }%>
   </div>
 </div>
 
