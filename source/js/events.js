@@ -33,8 +33,8 @@ Fluid.events = {
   },
 
   registerParallaxEvent: function() {
-    var bg = jQuery('#banner[parallax="true"]');
-    if (bg.length === 0) {
+    var ph = jQuery('#banner[parallax="true"]');
+    if (ph.length === 0) {
       return;
     }
     var board = jQuery('#board');
@@ -43,20 +43,17 @@ Fluid.events = {
     }
     var parallax = function() {
       var oVal = jQuery(window).scrollTop() / 5;
-      var offset = parseInt(board.css('margin-top'), 0);
+      var offset = parseInt(board.css('margin-top'), 10);
       var max = 96 + offset;
       if (oVal > max) {
         oVal = max;
       }
-      bg.css({
-        transform          : 'translate3d(0,' + oVal + 'px,0)',
-        '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-        '-ms-transform'    : 'translate3d(0,' + oVal + 'px,0)',
-        '-o-transform'     : 'translate3d(0,' + oVal + 'px,0)'
+      ph.css({
+        transform: 'translate3d(0,' + oVal + 'px,0)'
       });
-      var toc = jQuery('#toc');
-      if (toc) {
-        jQuery('#toc-ctn').css({
+      var sidebar = jQuery('.sidebar');
+      if (sidebar) {
+        sidebar.css({
           'padding-top': oVal + 'px'
         });
       }
